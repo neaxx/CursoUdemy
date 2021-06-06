@@ -34,5 +34,81 @@ namespace CursoUdemy.Controllers
             }
             return View(listaEmpleado);
         }
+
+
+        public void listarComboSexo()
+        {
+            //Agregar
+
+            List<SelectListItem> lista;
+            using(var bd = new BDPasajeEntities1())
+            {
+                lista = (from sexo in bd.Sexo
+                         where sexo.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = sexo.NOMBRE,
+                             Value = sexo.IIDSEXO.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listaSexo = lista;
+            }
+        }
+
+
+        public void listarTipoContrado()
+        {
+            //Agregar
+
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities1())
+            {
+                lista = (from TipoContrato in bd.TipoContrato
+                         where TipoContrato.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = TipoContrato.NOMBRE,
+                             Value = TipoContrato.IIDTIPOCONTRATO.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listaTipoContrato = lista;
+            }
+        }
+
+        public void listarTipoUsuario()
+        {
+            //Agregar
+
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities1())
+            {
+                lista = (from TipoUsuario in bd.TipoUsuario
+                         where TipoUsuario.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = TipoUsuario.NOMBRE,
+                             Value = TipoUsuario.IIDTIPOUSUARIO.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listaTipoUsuario = lista;
+            }
+        }
+
+
+        public void listarCombos()
+        {
+            listarTipoUsuario();
+            listarTipoContrado();
+            listarComboSexo();
+        }
+
+
+
+        public ActionResult Agregar()
+        {
+            listarCombos();
+            return View();
+        }
+
     }
 }
