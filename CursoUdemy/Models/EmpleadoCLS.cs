@@ -37,6 +37,11 @@ namespace CursoUdemy.Models
         [Display(Name ="Tipo Usuario")]
         public int iidtipoUsuario { get; set; }
 
+
+        [Display(Name ="Sueldo")]
+        [Required]
+        public double sueldo { get; set; }
+
         [Required]
         [Display(Name ="Tipo Contrato")]
         public int iidtipoContrato { get; set; }
@@ -46,6 +51,7 @@ namespace CursoUdemy.Models
         public int iidSexo { get; set; }
 
         public int bhabilitado { get; set; }
+
 
 
 

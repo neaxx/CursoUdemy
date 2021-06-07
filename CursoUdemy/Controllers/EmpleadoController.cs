@@ -26,7 +26,9 @@ namespace CursoUdemy.Controllers
                                      iidEmpleado = empleado.IIDEMPLEADO,
                                      nombre = empleado.NOMBRE,
                                      apPaterno = empleado.APPATERNO,
+                                     apMaterno = empleado.APMATERNO,
                                      nombreTipoUsuario = TipoUsuario.NOMBRE,
+                                       //sueldo
                                      nombreTipoContrato = TipoContrato.NOMBRE
                                  }).ToList();
 
