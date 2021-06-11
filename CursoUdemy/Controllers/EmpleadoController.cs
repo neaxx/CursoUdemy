@@ -112,5 +112,35 @@ namespace CursoUdemy.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Agregar(EmpleadoCLS oEmpleadoCLS)
+        {
+            if (!ModelState.IsValid)
+            {
+                listarCombos();
+                return View(oEmpleadoCLS);
+            }
+            using (var bd = new BDPasajeEntities1())
+            {
+                Empleado oEmpleado = new Empleado();
+                oEmpleado.NOMBRE = oEmpleadoCLS.nombre;
+                oEmpleado.APPATERNO = oEmpleadoCLS.apPaterno;
+                oEmpleado.APMATERNO = oEmpleadoCLS.apMaterno;
+                oEmpleado.FECHACONTRATO = oEmpleadoCLS.fechaContrato;
+                oEmpleado.SUELDO = oEmpleadoCLS.sueldo;
+                oEmpleado.IIDTIPOUSUARIO = oEmpleadoCLS.iidtipoUsuario;
+                oEmpleado.IIDTIPOCONTRATO = oEmpleadoCLS.iidtipoContrato;
+                oEmpleado.IIDSEXO = oEmpleado.IIDSEXO;
+                oEmpleado.BHABILITADO = 1;
+
+                bd.Empleado.Add(oEmpleado);
+                bd.SaveChanges();
+
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

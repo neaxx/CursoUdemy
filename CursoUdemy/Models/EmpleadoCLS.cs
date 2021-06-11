@@ -40,7 +40,7 @@ namespace CursoUdemy.Models
 
         [Display(Name ="Sueldo")]
         [Required]
-        public double sueldo { get; set; }
+        public decimal sueldo { get; set; }
 
         [Required]
         [Display(Name ="Tipo Contrato")]
