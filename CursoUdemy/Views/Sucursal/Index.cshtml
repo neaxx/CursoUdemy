@@ -14,10 +14,11 @@
     <thead>
         <tr>
             <td width="10%">@Html.LabelFor(p=>Model[0].iidsucursal)</td>
-            <td width="20%">@Html.LabelFor(p=>Model[0].nombre)</td>
+            <td width="10%">@Html.LabelFor(p=>Model[0].nombre)</td>
             <td width="40%">@Html.LabelFor(p=>Model[0].direccion)</td>
-            <td width="20%">@Html.LabelFor(p=>Model[0].telefono)</td>
-            <td width="70%">@Html.LabelFor(p=>Model[0].email)</td>
+            <td width="10%">@Html.LabelFor(p=>Model[0].telefono)</td>
+            <td width="20%">@Html.LabelFor(p=>Model[0].email)</td>
+            <td width="10%">Operaciones</td>
 
         </tr>
 
@@ -32,6 +33,11 @@
             <td>@item.direccion</td>
             <td>@item.telefono</td>
             <td>@item.email</td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Sucursal", new { id = @item.iidsucursal }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                @Html.ActionLink(" ", "Eliminar", "Sucursal", new { id = @item.iidsucursal }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+
+            </td>
 
         </tr>
         }
