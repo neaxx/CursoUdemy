@@ -22,6 +22,13 @@ namespace CursoUdemy.Models
         [Required]
         [StringLength(150, ErrorMessage = "Longitud maxima 150")]
         public string apMaterno { get; set; }
+
+        [Display(Name ="Direccion")]
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [StringLength(200, ErrorMessage = "Longitud maxima 200")]
+        public string direccion { get; set; }
+
         [Display(Name ="Email")]
         [Required]
         [StringLength(200, ErrorMessage = "Longitud maxima 200")]

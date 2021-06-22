@@ -75,6 +75,7 @@ namespace CursoUdemy.Controllers
                 oCliente.NOMBRE = oClienteCLS.nombre;
                 oCliente.APPATERNO = oClienteCLS.apPaterno;
                 oCliente.APMATERNO = oClienteCLS.apMaterno;
+                oCliente.DIRECCION = oClienteCLS.direccion;
                 oCliente.EMAIL = oClienteCLS.email;
                 oCliente.IIDSEXO = oClienteCLS.iidsexo;
                 oCliente.TELEFONOCELULAR = oClienteCLS.telefonoCelular;
