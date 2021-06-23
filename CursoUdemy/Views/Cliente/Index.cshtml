@@ -12,12 +12,13 @@
 
     <thead>
         <tr>
-            <td width="10%">@Html.LabelFor(p=>Model[0].iidcliente)</td>
-            <td width="10%">@Html.LabelFor(p => Model[0].nombre)</td>
-            <td width="20%">@Html.LabelFor(p => Model[0].apPaterno)</td>
-            <td width="20%">@Html.LabelFor(p => Model[0].apMaterno)</td>
-            <td width="20%">@Html.LabelFor(p => Model[0].email)</td>
-            <td width="40%">@Html.LabelFor(p => Model[0].telefonoCelular)</td>
+            <td>@Html.LabelFor(p=>Model[0].iidcliente)</td>
+            <td>@Html.LabelFor(p => Model[0].nombre)</td>
+            <td>@Html.LabelFor(p => Model[0].apPaterno)</td>
+            <td>@Html.LabelFor(p => Model[0].apMaterno)</td>
+            <td>@Html.LabelFor(p => Model[0].email)</td>
+            <td>@Html.LabelFor(p => Model[0].telefonoCelular)</td>
+            <td>Operaciones</td>
         </tr>
     </thead>
 
@@ -30,6 +31,11 @@
             <td>@item.apMaterno</td>
             <td>@item.email</td>
             <td>@item.telefonoCelular</td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Cliente", new { id = @item.iidcliente }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+                @Html.ActionLink(" ", "Eliminar", "Cliente", new { id = @item.iidcliente }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+
+            </td>
         </tr>
         }
 

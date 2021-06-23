@@ -14,7 +14,7 @@ namespace CursoUdemy.Controllers
         {
 
             List<ClienteCLS> listaCliente = null;
-            using(var bd=new BDPasajeEntities1())
+            using (var bd = new BDPasajeEntities1())
             {
                 listaCliente = (from cliente in bd.Cliente
                                 where cliente.BHABILITADO == 1
@@ -29,6 +29,30 @@ namespace CursoUdemy.Controllers
                                 }).ToList();
             }
             return View(listaCliente);
+        }
+
+
+        public ActionResult Editar(int id)
+        {
+
+            ClienteCLS oClienteCLS = new ClienteCLS();
+            using(var bd = new BDPasajeEntities1())
+            {
+                llenarSexo();
+                ViewBag.lista = listaSexo;
+                Cliente oCliente = bd.Cliente.Where(p => p.IIDCLIENTE.Equals(id)).First();
+                oClienteCLS.iidcliente = oCliente.IIDCLIENTE;
+                oClienteCLS.nombre = oCliente.NOMBRE;
+                oClienteCLS.apPaterno = oCliente.APPATERNO;
+                oClienteCLS.apMaterno = oCliente.APMATERNO;
+                oClienteCLS.direccion = oCliente.DIRECCION;
+                oClienteCLS.email = oCliente.EMAIL;
+                oClienteCLS.iidsexo = (int)oCliente.IIDSEXO;
+                oClienteCLS.telefonoCelular = oCliente.TELEFONOCELULAR;
+            }
+
+
+            return View(oClienteCLS);
         }
 
 

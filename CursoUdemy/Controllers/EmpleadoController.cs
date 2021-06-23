@@ -142,5 +142,26 @@ namespace CursoUdemy.Controllers
         }
 
 
+        public ActionResult Editar(int id)
+        {
+            
+            EmpleadoCLS oEmpleadoCLS = new EmpleadoCLS();
+            using (var bd = new BDPasajeEntities1())
+            {
+                listarCombos();
+                Empleado oEmpleado = bd.Empleado.Where(p => p.IIDEMPLEADO.Equals(id)).First();
+                oEmpleadoCLS.iidEmpleado = oEmpleado.IIDEMPLEADO;
+                oEmpleadoCLS.nombre = oEmpleado.NOMBRE;
+                oEmpleadoCLS.apPaterno = oEmpleado.APPATERNO;
+                oEmpleadoCLS.apMaterno = oEmpleado.APMATERNO;
+                oEmpleadoCLS.fechaContrato =(DateTime) oEmpleado.FECHACONTRATO;
+                oEmpleadoCLS.sueldo =(Decimal) oEmpleado.SUELDO;
+                oEmpleadoCLS.iidtipoUsuario =(int) oEmpleado.IIDTIPOUSUARIO;
+                oEmpleadoCLS.iidtipoContrato =(int) oEmpleado.IIDTIPOCONTRATO;
+                oEmpleadoCLS.iidSexo =(int) oEmpleado.IIDSEXO;
+            }
+            return View(oEmpleadoCLS);
+        }
+
     }
 }
