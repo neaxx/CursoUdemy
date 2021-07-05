@@ -9,6 +9,130 @@ namespace CursoUdemy.Controllers
 {
     public class BusController : Controller
     {
+        public void listarModelo()
+        {
+            //Agregar
+
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities1())
+            {
+                lista = (from item in bd.Modelo
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDMODELO.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listaModelo = lista;
+            }
+        }
+
+        public void listarSucursal()
+        {
+            //Agregar
+
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities1())
+            {
+                lista = (from item in bd.Sucursal
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDSUCURSAL.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listaSucursal = lista;
+            }
+        }
+
+        public void listarMarca()
+        {
+            //Agregar
+
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities1())
+            {
+                lista = (from item in bd.Marca
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDMARCA.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listaMarca = lista;
+            }
+        }
+
+        public void listarTipoBus()
+        {
+            //Agregar
+
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities1())
+            {
+                lista = (from item in bd.TipoBus
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDTIPOBUS.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listaTipoBus = lista;
+            }
+        }
+
+        public void listarCombos()
+        {
+            listarTipoBus();
+            listarModelo();
+            listarMarca();
+            listarSucursal();
+        }
+
+        public ActionResult Agregar()
+        {
+            listarCombos();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Agregar(BusCLS oBusCLS)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(oBusCLS);
+            }
+
+            using(var bd = new BDPasajeEntities1())
+            {
+                Bus oBus = new Bus();
+                oBus.IIDSUCURSAL = oBusCLS.iidSucursal;
+                oBus.IIDTIPOBUS = oBusCLS.iidTipoBus;
+                oBus.PLACA = oBusCLS.placa;
+                oBus.FECHACOMPRA = oBusCLS.fechaCompra;
+                oBus.IIDMODELO = oBusCLS.iidModelo;
+                oBus.NUMEROFILAS = oBusCLS.numeroFilas;
+                oBus.NUMEROCOLUMNAS = oBusCLS.numeroColumnas;
+                oBus.DESCRIPCION = oBusCLS.descripcion;
+                oBus.OBSERVACION = oBusCLS.observacion;
+                oBus.IIDMARCA = oBusCLS.iidMarca;
+                oBus.BHABILITADO = 1;
+
+                bd.Bus.Add(oBus);
+
+                bd.SaveChanges();
+          
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
         // GET: Bus
         public ActionResult Index()
         {
