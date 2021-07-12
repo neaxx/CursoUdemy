@@ -132,6 +132,32 @@ namespace CursoUdemy.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Editar(int id)
+        {
+
+            BusCLS oBusClS = new BusCLS();
+            listarCombos();
+            using(var bd = new BDPasajeEntities1())
+            {
+                Bus oBus = bd.Bus.Where(p => p.IIDBUS.Equals(id)).First();
+                oBusClS.iidBus = oBus.IIDBUS;
+                oBusClS.iidSucursal =(int) oBus.IIDSUCURSAL;
+                oBusClS.iidTipoBus =(int) oBus.IIDTIPOBUS;
+                oBusClS.placa = oBus.PLACA;
+                oBusClS.fechaCompra =(DateTime) oBus.FECHACOMPRA;
+                oBusClS.iidModelo =(int) oBus.IIDMODELO;
+                oBusClS.numeroColumnas =(int) oBus.NUMEROCOLUMNAS;
+                oBusClS.numeroFilas =(int) oBus.NUMEROFILAS;
+                oBusClS.descripcion = oBus.DESCRIPCION;
+                oBusClS.observacion = oBus.OBSERVACION;
+                oBusClS.iidMarca =(int) oBus.IIDMARCA;
+            }
+
+            return View(oBusClS);
+        }
+
+
+
 
         // GET: Bus
         public ActionResult Index()

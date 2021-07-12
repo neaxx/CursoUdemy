@@ -49,6 +49,28 @@ namespace CursoUdemy.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult Editar(MarcaCLS oMarcaCLS)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(oMarcaCLS);
+            }
+
+            int idMarca = oMarcaCLS.iidmarca;
+
+            using(var bd = new BDPasajeEntities1())
+            {
+                Marca oMarca = bd.Marca.Where(p => p.IIDMARCA.Equals(idMarca)).First();
+                oMarca.NOMBRE = oMarcaCLS.nombre;
+                oMarca.DESCRIPCION = oMarcaCLS.descripcion;
+                bd.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
         
         [HttpPost]
         public ActionResult Agregar(MarcaCLS oMarcaCLS)
