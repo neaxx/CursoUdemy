@@ -26,7 +26,7 @@ namespace CursoUdemy.Models
         [Required]
         [Display(Name = "Fecha Viaje")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime fechaViaje { get; set; }
 
         [Required]

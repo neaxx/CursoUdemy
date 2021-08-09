@@ -25,7 +25,7 @@ namespace CursoUdemy.Models
 
         [Display(Name ="Fecha Compra")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime fechaCompra { get; set; }
         [Display(Name = "Nombre Modelo")]
         [Required]

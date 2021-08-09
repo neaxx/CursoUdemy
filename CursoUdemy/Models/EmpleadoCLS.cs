@@ -28,7 +28,7 @@ namespace CursoUdemy.Models
         public string apMaterno { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "0:yyyy-MM-dd", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required]
         [Display(Name ="fecha Contrado")]
         public DateTime fechaContrato { get; set; }

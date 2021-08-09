@@ -30,7 +30,7 @@ namespace CursoUdemy.Models
         [Display(Name ="Fecha Apertura")]
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString ="0:yyyy-MM-dd", ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}", ApplyFormatInEditMode =true)]
         public DateTime fechaApertura { get; set; }
         public int bhabilitado { get; set; }
 

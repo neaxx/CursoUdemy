@@ -50,6 +50,30 @@ namespace CursoUdemy.Controllers
             return View(oSucursalCLS);
         }
 
+        [HttpPost]
+        public ActionResult Editar(SucursalCLS oSucursalCLS)
+        {
+            int idSucursal = oSucursalCLS.iidsucursal;
+            if (!ModelState.IsValid)
+            {
+                return View(oSucursalCLS);
+            }
+            using(var bd = new BDPasajeEntities1())
+            {
+                Sucursal oSucursal = bd.Sucursal.Where(p => p.IIDSUCURSAL.Equals(idSucursal)).First();
+                oSucursal.NOMBRE = oSucursalCLS.nombre;
+                oSucursal.DIRECCION = oSucursalCLS.direccion;
+                oSucursal.TELEFONO = oSucursalCLS.telefono;
+                oSucursal.EMAIL = oSucursalCLS.email;
+                oSucursal.FECHAAPERTURA = (DateTime) oSucursalCLS.fechaApertura;
+
+                bd.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
 
         public ActionResult Agregar()
         {
