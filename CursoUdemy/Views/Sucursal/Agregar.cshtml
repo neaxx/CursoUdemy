@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        @using (Html.BeginForm("Agregar", "Sucursal", FormMethod.Post))
+        @using (Html.BeginForm("Agregar", "Sucursal", FormMethod.Post, new { @id = "frmSucursal" }))
         {
             <div>
                 @Html.LabelFor(p => p.nombre)
@@ -43,6 +43,7 @@
             <div>
                 <div style="margin:auto">
                     <input type="submit" class="btn btn-primary" value="Guardar" />
+                    @Html.ActionLink("Regresar", "Index", "Sucursal",null, new { @class = "btn btn-danger" })
                 </div>
             </div>
 
@@ -50,3 +51,13 @@
     </div>
 </div>
 
+<script>
+    var frmSucursal = document.getElementById("frmSucursal");
+    frmSucursal.onsubmit = function (e) {
+        e.preventDefault();
+        if (confirm("Desea Guardar realmente ?") == 1) {
+            frmSucursal.submit();
+        }
+    }
+
+</script>
