@@ -31,6 +31,34 @@ namespace CursoUdemy.Controllers
             return View(listaCliente);
         }
 
+        [HttpPost]
+        public ActionResult Editar(ClienteCLS oClienteCLS)
+        {
+
+            int idcliente = oClienteCLS.iidcliente;
+
+            if (!ModelState.IsValid)
+            {
+                return View(oClienteCLS);
+            }
+
+            using(var bd= new BDPasajeEntities1())
+            {
+                Cliente oCliente = bd.Cliente.Where(p => p.IIDCLIENTE.Equals(idcliente)).First();
+                oCliente.NOMBRE = oClienteCLS.nombre;
+                oCliente.APPATERNO = oClienteCLS.apPaterno;
+                oCliente.APMATERNO = oClienteCLS.apMaterno;
+                oCliente.EMAIL = oClienteCLS.email;
+                oCliente.DIRECCION = oClienteCLS.direccion;
+                oCliente.IIDSEXO = oClienteCLS.iidsexo;
+                oCliente.TELEFONOCELULAR = oClienteCLS.telefonoCelular;
+
+                bd.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
         public ActionResult Editar(int id)
         {
