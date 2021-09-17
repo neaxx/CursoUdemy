@@ -130,7 +130,7 @@ namespace CursoUdemy.Controllers
                 oEmpleado.SUELDO = oEmpleadoCLS.sueldo;
                 oEmpleado.IIDTIPOUSUARIO = oEmpleadoCLS.iidtipoUsuario;
                 oEmpleado.IIDTIPOCONTRATO = oEmpleadoCLS.iidtipoContrato;
-                oEmpleado.IIDSEXO = oEmpleado.IIDSEXO;
+                oEmpleado.IIDSEXO = oEmpleadoCLS.iidSexo;
                 oEmpleado.BHABILITADO = 1;
 
                 bd.Empleado.Add(oEmpleado);
@@ -161,6 +161,33 @@ namespace CursoUdemy.Controllers
                 oEmpleadoCLS.iidSexo =(int) oEmpleado.IIDSEXO;
             }
             return View(oEmpleadoCLS);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(EmpleadoCLS oEmpleadoCLS)
+        {
+
+            int idEmpleado = oEmpleadoCLS.iidEmpleado;
+            if (!ModelState.IsValid)
+            {
+                return View(oEmpleadoCLS);
+            }
+            using (var bd = new BDPasajeEntities1())
+            {
+                Empleado oEmpleado = bd.Empleado.Where(p => p.IIDEMPLEADO.Equals(idEmpleado)).First();
+                oEmpleado.NOMBRE = oEmpleadoCLS.nombre;
+                oEmpleado.APPATERNO = oEmpleadoCLS.apPaterno;
+                oEmpleado.APMATERNO = oEmpleadoCLS.apMaterno;
+                oEmpleado.FECHACONTRATO = oEmpleadoCLS.fechaContrato;
+                oEmpleado.SUELDO = oEmpleadoCLS.sueldo;
+                oEmpleado.IIDTIPOUSUARIO = oEmpleadoCLS.iidtipoUsuario;
+                oEmpleado.IIDTIPOCONTRATO = oEmpleadoCLS.iidtipoContrato;
+                oEmpleado.IIDSEXO = oEmpleadoCLS.iidSexo;
+
+                bd.SaveChanges();
+            }
+
+                return RedirectToAction("Index");
         }
 
     }
