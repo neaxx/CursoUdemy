@@ -10,6 +10,34 @@ namespace CursoUdemy.Controllers
     public class ViajeController : Controller
     {
         // GET: Viaje
+
+        public void listarLugar()
+        {
+            //Agregar
+
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities1())
+            {
+                lista = (from item in bd.Lugar
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.NOMBRE,
+                             Value = item.IIDLUGAR.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listarLugar = lista; //ViewBag es para castear(Lanzar) la lista
+            }
+        }
+
+        //ActionResult devuelve la vista agregar con los comboBox listados
+        public ActionResult Agregar()
+        {
+            listarCombos();
+            return View();
+        }
+
+        //Funcion ActionResult que devuelve la vista Index de Viaje con la informacion
         public ActionResult Index()
         {
             List<ViajeCLS> listaViaje = null;
@@ -34,5 +62,33 @@ namespace CursoUdemy.Controllers
 
                 return View(listaViaje);
         }
+
+        public void listarBus()
+        {
+            //Agregar
+            //Metodo para llenar ComboBox en Agregar
+
+            List<SelectListItem> lista;
+            using (var bd = new BDPasajeEntities1())
+            {
+                lista = (from item in bd.Bus
+                         where item.BHABILITADO == 1
+                         select new SelectListItem
+                         {
+                             Text = item.PLACA,
+                             Value = item.IIDBUS.ToString()
+                         }).ToList();
+                lista.Insert(0, new SelectListItem { Text = "--Seleccione--", Value = "" });
+                ViewBag.listarBus = lista;
+            }
+        }
+
+
+        public void listarCombos()
+        {
+            listarLugar();
+            listarBus();
+        }
+
     }
 }

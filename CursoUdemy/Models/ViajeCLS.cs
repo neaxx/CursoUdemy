@@ -21,6 +21,7 @@ namespace CursoUdemy.Models
 
         [Required]
         [Display(Name = "Precio")]
+        [Range(0,100000,ErrorMessage ="Rango fuera de indices")]
         public double precio { get; set; }
 
         [Required]
@@ -29,13 +30,17 @@ namespace CursoUdemy.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime fechaViaje { get; set; }
 
+        [Display(Name = "Bus")]
+        [Required]
+        public int iidBus { get; set; }
+
         [Required]
         [Display(Name = "Numero Asientos Disponibles")]
         public int numeroAsientosDisponibles { get; set; }
 
         //Porpiedades adicionales
 
-        [Display(Name ="Lugar Orgien")]
+        [Display(Name ="Lugar Origen")]
         public string nombreLugarOrigen { get; set; }
         [Display(Name = "Lugar Destino")]
         public string nombreLugarDestino { get; set; }
