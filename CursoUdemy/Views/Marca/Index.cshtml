@@ -25,7 +25,7 @@
             <td>@item.descripcion</td>
             <td>
                 @Html.ActionLink(" ", "Editar", "Marca", new { id = @item.iidmarca }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
-                @Html.ActionLink(" ", "Eliminar", "Marca", new { id = @item.iidmarca }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
+                @Html.ActionLink(" ", "Eliminar", "Marca", new { id = @item.iidmarca }, new { @class = "glyphicon glyphicon-trash btn btn-danger", @onclick = "eliminar()" })
 
             </td>
         </tr>
@@ -35,3 +35,16 @@
 
 </table>
 
+<script>
+
+    function eliminar() {
+        if (confirm("Desea eliminar el registro realmente?") == 1) {
+            //pone SI
+            alert("Se elimino correctamente");
+        } else {
+            //Pone NO
+            event.preventDefault();
+        }
+    }
+
+</script>

@@ -93,7 +93,19 @@ namespace CursoUdemy.Controllers
             return RedirectToAction("Index");
         }
         
+        public ActionResult Eliminar(int id)
+        {
 
+            using (var bd = new BDPasajeEntities1())
+            {
+                Marca oMarca = bd.Marca.Where(p => p.IIDMARCA.Equals(id)).First();
+                oMarca.BHABILITADO = 0;
+                bd.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+
+        }
 
 
     }
